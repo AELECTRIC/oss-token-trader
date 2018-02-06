@@ -49,7 +49,7 @@ $(document).ready(function() {
 });
 
 var option = function(value, msg, selectedValue) {
-    return $('<option>').val(value).text(msg).prop('selected', (value == selectedValue));
+    return $('<option>').val(value).text(msg).prop('selected', (value === selectedValue));
 };
 
 /* check condition */
@@ -133,7 +133,7 @@ var refreshSellOrders = function() {
     if (!board) board = [];
     var rows = [];
     board.forEach(function(record, idx, b) {
-        if (tokenFrom == record.from && tokenTo == record.to) {
+        if (tokenFrom === record.from && tokenTo === record.to) {
             rows.push(record);
         }
     });
@@ -153,7 +153,7 @@ var refreshSellOrders = function() {
 var appendSellRecord = function(trader, r) {
 
     var row = $('#sell-row-template div:first').clone(true);
-    if (r.maker == trader) {
+    if (r.maker === trader) {
         row.find('input').prop('disabled', true);
         row.find('button[name=trade]').css('display', 'none');
         row.find('button[name=cancel]').css('display', 'block');
@@ -185,7 +185,7 @@ var removeRecord = function(recordId) {
     var board = LOCAL_STORAGE.getBoard();
     if (!board) board = [];
     board.forEach(function(record, idx, b) {
-        if (record.recordId == recordId) {
+        if (record.recordId === recordId) {
             b.splice(idx,1);
             return true;
         }
@@ -205,7 +205,7 @@ var allowance = function(fromTo) {
         function() {
 
             var tokenAddress;
-            if (fromTo == 'from') {
+            if (fromTo === 'from') {
                 tokenAddress = $('#token-from').val();
             } else {
                 tokenAddress = $('#token-to').val();
@@ -269,11 +269,11 @@ var focusTotal = function() {
     changeTarget = (v.price.isFinite()) ? 1 : ((v.amount.isFinite()) ? 0 : -1);
 };
 var changeTotal = function() {
-    if ($('#total').val() == '' || changeTarget == -1) return;
+    if ($('#total').val() === '' || changeTarget === -1) return;
 
     var v = getSellValues();
 
-    if (changeTarget == 0) {
+    if (changeTarget === 0) {
         // price
         var price = v.total.div(v.amount);
         if (toBigNumberById('#price').equals(price)) return;
@@ -316,7 +316,7 @@ var sell = function() {
     var amount = $('#amount').val().trim();
 
     // very rough validation for demo
-    if (price == "" || amount == "") {
+    if (price === "" || amount === "") {
         DEMO_UTIL.okDialog(
             demoMsg('trade.dialog.err-required.title'),
             demoMsg('trade.dialog.err-required.msg')
@@ -523,7 +523,7 @@ var tradeMakerSignAccept = function (recordId, makerTokenAddr, makerAmount, make
             var board = LOCAL_STORAGE.getBoard();
             if (!board) board = [];
             board.forEach(function(record, idx, b) {
-                if (record.recordId == recordId) {
+                if (record.recordId === recordId) {
                     var remain = new BigNumber(record.remain).minus(new BigNumber(makerAmount));
                     if (remain.lte(new BigNumber(0))) {
                         b.splice(idx,1);
@@ -555,7 +555,7 @@ var calcOnOrder = function(traderAddress, tokenAddress) {
     if (!board) return new BigNumber("0");
     var sum = new BigNumber(0);
     board.forEach(function(record, idx, b) {
-        if (traderAddress == record.maker && tokenAddress == record.from) {
+        if (traderAddress === record.maker && tokenAddress === record.from) {
             sum = sum.add(new BigNumber(record.remain));
         }
     });

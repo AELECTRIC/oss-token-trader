@@ -1,13 +1,12 @@
 const express = require('express'),
     app = express(),
+    path = require('path'),
     bodyParser = require('body-parser'),
-    debug = require('debug')('server'),
-    Promise = require('bluebird'),
-    ethClient = require('eth-client');
+    debug = require('debug')('server');
 
 app.listen(3000);
 
-app.use('/token-trader', express.static(__dirname + '/public'));
+app.use('/token-trader', express.static(path.join(__dirname, '/public')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
