@@ -29,20 +29,22 @@ Usage Guides
 ### Create Z.com Cloud Blockchain environment
 see [Setup Development Environment](https://guide.blockchain.z.com/docs/init/setup/)
 
+### Intall Node.js and Truffle
+- Download Node.js [here](https://nodejs.org/en/download/). Required version: >= 6.4.0
+- Install Truffle
+```
+npm -g install truffle
+``` 
 ### Install application
 ```bash
-git clone --recursive https://github.com/zcom-cloud-blockchain/oss-token-trader.git
-cd oss-token-trader/server
+git clone https://github.com/zcom-cloud-blockchain/oss-token-trader.git
+cd oss-token-trader
 npm install
 ```
 
 ### Deploy contracts
-* Attention  
-  At September 1, 2017, truffle should be used at version 3.4.5.  
-  (There is a bug in web3.js related with truffle version 3.4.6 or later, and the deployment does not work properly.)  
-  https://github.com/ethereum/web3.js/issues/990
 ```bash
-cd oss-token-trader/provider
+cd oss-token-trader
 truffle migrate
 ```
 
@@ -50,7 +52,7 @@ truffle migrate
 See [Basic Configuration](https://guide.blockchain.z.com/docs/dapp/setup/)
 
 - ##### Set CNS address on admin console
-  1. Open a file 'provider/build/contracts/ContractNameService.json'
+  1. Open a file 'build/contracts/ContractNameService.json'
 
   2. Use 'networks.(network-id).address' as CNS address to register as ABI address on admin console
 
@@ -58,19 +60,19 @@ See [Contract Creation Process](https://guide.blockchain.z.com/docs/dapp/contrac
 - ##### Set Contract ABIs on admin console
   1. Open following files
     ```bash
-    'provider/build/contracts/Demo_v1.json'
-    'provider/build/contracts/SwapTrade_v1.json'
+    'build/contracts/Demo_v1.json'
+    'build/contracts/SwapTrade_v1.json'
     ```
   2. Use 'networks.(network-id).address' and 'abi' values to register as Contract ABIs on admin console
 
 
 ### Configure for client
-Create server/public/js/config.js based on server/public/js/config_template.js. Edit "CNS_ADDRESS" and "TOKEN_TRADER_ADDRESS" which you deployed.
+Create public/js/config.js based on public/js/config_template.js. Edit "CNS_ADDRESS" and "TOKEN_TRADER_ADDRESS" which you deployed.
 
 - #### Put TOKEN_TRADER_ADDRESS of config
   1. Open following files
     ```bash
-    'provider/build/contracts/TokenTrader.json'
+    'build/contracts/TokenTrader.json'
     ```
   2. Use 'networks.(network-id).address' as TokenTrader address to edit config
 
@@ -78,6 +80,6 @@ Create server/public/js/config.js based on server/public/js/config_template.js. 
 ### Start application
 ```bash
 cd oss-token-trader
-node server/app.js
+node app.js
 ```
 

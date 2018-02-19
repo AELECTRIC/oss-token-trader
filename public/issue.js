@@ -148,12 +148,13 @@ var sendToken = function (button) {
                                 alert('Failed to sign oarams.');
                                 return DEMO_UTIL.stopLoad();
                             }
+
                             contract.sendTransaction('', 'Demo', 'send', [tokenAddress, toAddress, amount, nonce, sign], DEMO_ABI,
                                 // send token
                                 function(err, res) {
                                     if (err) {
                                         console.error(err);
-                                        alert('Failed to sennd Token.');
+                                        alert('Failed to send Token.');
                                         return DEMO_UTIL.stopLoad();
                                     }
 
