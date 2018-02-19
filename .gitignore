@@ -1,7 +1,3 @@
 gmo/*
-*/node_modules/*
-*/build/*
-provider/config.json
-server/public/js/config.js
-*.bak
-Thumbs.db
+node_modules/*
+build/*

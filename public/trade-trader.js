@@ -162,7 +162,7 @@ var tradeMakerSign = function(recordId, makerTokenAddr, makerAmount, makerAddres
 var getCurrentTraderAccount = function() {
     var trader = $('#trader-address').val();
     var traderAAcount = LOCAL_STORAGE.getTraderAAccount();
-    if (traderAAcount.getAddress() == trader) {
+    if (traderAAcount.getAddress() === trader) {
         return traderAAcount;
     }
     return LOCAL_STORAGE.getTraderBAccount();
@@ -170,11 +170,11 @@ var getCurrentTraderAccount = function() {
 // This is for DEMO (For real service, use the key in the terminal of the end user.)
 var getAccountFromAddress = function(address) {
     var traderAAcount = LOCAL_STORAGE.getTraderAAccount();
-    if (traderAAcount.getAddress() == address) {
+    if (traderAAcount.getAddress() === address) {
         return traderAAcount;
     }
     var traderBAcount = LOCAL_STORAGE.getTraderBAccount();
-    if (traderBAcount.getAddress() == address) {
+    if (traderBAcount.getAddress() === address) {
         return traderBAcount;
     }
     throw new Error('there is no account for address "' + address + '"');
